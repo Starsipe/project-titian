@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import {
   MatInputModule,
   MatCardModule,
@@ -16,6 +17,8 @@ import { HeaderComponent } from './header/header.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ListComponent } from './components/list/list.component';
+
+import { IssueService } from './issue.service';
 
 const routes: Routes = [
   {path: 'create', component: CreateComponent},
@@ -42,8 +45,9 @@ const routes: Routes = [
     MatToolbarModule,
     MatExpansionModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [IssueService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
