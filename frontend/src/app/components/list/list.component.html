@@ -1,3 +1,27 @@
-<p>
-  list works!
-</p>
+<div class="list-card-wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Dagens topp 10</mat-card-title>
+      <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
+        {{ today | date }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card *ngFor="let food of food_list">
+      {{food.title}}
+    </mat-card>
+
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+
+    <script>
+    var app = angular.module('myApp', []);
+    app.controller('datCtrl', function($scope) {
+        $scope.today = new Date();
+    });
+    </script>
