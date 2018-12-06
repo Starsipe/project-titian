@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -7,14 +7,16 @@ import { Component } from '@angular/core';
 
 })
 export class CardComponent {
+  enteredTitle = '';
+  enteredContent = '';
+  @Output() postCreated = new EventEmitter();
 
-  name = 'Filip';
-  output = 'hej';
-
-  onClick(input: HTMLTextAreaElement) {
-    console.dir(input);
-    this.output = input.value;
-
+  onClick() {
+    const post = {
+      title: this.enteredTitle,
+      content: this.enteredContent
+    };
+    this.postCreated.emit(post);
   }
 
 }

@@ -1,10 +1,12 @@
 <mat-card>
-<mat-form-field>
-<textarea matInput #input></textarea>
-</mat-form-field>
-<button
-mat-raised-button
-color = "primary"
-(click)="onClick(input)">Click me</button>
-</mat-card>
-<p>{{output}}</p>
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="enteredTitle">
+    </mat-form-field>
+  <mat-form-field>
+  <textarea matInput [(ngModel)]="enteredContent"></textarea>
+  </mat-form-field>
+  <button
+  mat-raised-button
+  color = "primary"
+  (click)="onClick()">Click me</button>
+  </mat-card>

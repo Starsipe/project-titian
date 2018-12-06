@@ -1,9 +1,10 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<app-header></app-header>
+<main>
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <app-card></app-card>
-</div>
+  <app-card (postCreated)="onPostAdded($event)"></app-card>
+  <app-post-list [posts]="posts"></app-post-list>
+</main>
 
 
