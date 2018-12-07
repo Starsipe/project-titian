@@ -19,9 +19,8 @@ import { HeaderComponent } from './header/header.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ListComponent } from './components/list/list.component';
-import { NotfoundComponent } from './components/Notfound/notfound.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
-import { IssueService } from './issue.service';
 import { LayoutModule } from '@angular/cdk/layout';
 
 const routes: Routes = [
@@ -60,7 +59,7 @@ const routes: Routes = [
     MatListModule,
 
   ],
-  providers: [IssueService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
