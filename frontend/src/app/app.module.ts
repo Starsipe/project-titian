@@ -10,6 +10,7 @@ import {
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
+  MatIconModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -46,6 +47,8 @@ const routes: Routes = [
     MatExpansionModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    MatIconModule,
+
   ],
   providers: [IssueService],
   bootstrap: [AppComponent]
