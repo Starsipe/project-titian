@@ -18,6 +18,7 @@ import { HeaderComponent } from './header/header.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ListComponent } from './components/list/list.component';
+import { NotfoundComponent } from './components/Notfound/notfound.component';
 
 import { IssueService } from './issue.service';
 
@@ -25,7 +26,9 @@ const routes: Routes = [
   {path: 'create', component: CreateComponent},
   {path: 'edit/:id', component: EditComponent},
   {path: 'list', component: ListComponent},
-  {path: '', redirectTo: 'list', pathMatch: 'full'}
+  {path: '', redirectTo: 'list', pathMatch: 'full'},
+  {path: '**', component: NotfoundComponent},
+
 ];
 
 @NgModule({
@@ -35,6 +38,8 @@ const routes: Routes = [
     CreateComponent,
     EditComponent,
     ListComponent,
+    NotfoundComponent,
+
   ],
   imports: [
     BrowserModule,
