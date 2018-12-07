@@ -1,4 +1,25 @@
-import express from 'express';
+const http = require('http');
+
+const server = http.createServer(function(req, res){
+  if (req.url == '/'){
+    res.write('hello world');
+    res.end();
+  }
+
+  if (req.url == '/node'){
+    res.write(JSON.stringify([1,2,3]));
+    res.end();
+  }
+  else res.write('Error 404'); res.end();
+});
+server.on('connection', function(socket){
+  console.log('new connection');
+})
+server.listen(3000);
+console.log('Listening on port 3000 ...');
+
+
+/* import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
@@ -80,3 +101,4 @@ router.route('/issues/delete/:id').get((req, res) => {
 app.use('/', router);
 
 app.listen(4000, () => console.log('Express server running on port 4000'));
+ */
