@@ -10,7 +10,8 @@ import {
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
-  MatIconModule
+  MatIconModule,
+  MatMenuModule, MatSidenavModule, MatListModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { ListComponent } from './components/list/list.component';
 import { NotfoundComponent } from './components/Notfound/notfound.component';
 
 import { IssueService } from './issue.service';
+import { LayoutModule } from '@angular/cdk/layout';
 
 const routes: Routes = [
   {path: 'create', component: CreateComponent},
@@ -39,7 +41,6 @@ const routes: Routes = [
     EditComponent,
     ListComponent,
     NotfoundComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -53,6 +54,10 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     MatIconModule,
+    MatMenuModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule,
 
   ],
   providers: [IssueService],
