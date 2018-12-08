@@ -23,32 +23,51 @@ var myModel = mongoose.model('foods', food); //collection
 var _instance = new myModel({name: _foodtruck, rating: _rating});
 
 //Methods to iteract with database
-function Save_data() {
+function Insert_data() {
   _instance.save( (err, _instance) => {
-    if (err) console.error(err); //error message
-   //console.log('saved data');
+    if (err) console.error(err);
+    console.log('Data successfully saved to mongoDB');
   });
 }
 
-function Retrive_data(uname, callback) {
-  myModel.find({name: uname}, function(err, users) {
+function Retrive_data_by_ID(_id, callback) {
+  myModel.findById({_id: _id}, function(err, food) {
     if (err) {
       callback(err, null);
     } else {
-      callback(null, users[0]);
+      callback(null, food);
+    }
+  });
+};
+
+function Retrive_data(callback) {
+  myModel.find({}, function(err, food) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, food);
     }
   });
 };
 
 
-Save_data();
+//Example of using methods
 
-uname = 'Sukaldari'
+Insert_data();
 
-Retrive_data(uname, function(err, user) {
+_id = '5c0c18bb27fce761bacc2757';
+Retrive_data_by_ID(_id, function(err, food) {
   if (err) {
     console.log(err);
   }
-  console.log('user: ');
-  console.log(user);
+  console.log('food_id: ');
+  console.log(food);
+});
+
+Retrive_data(function(err, food) {
+  if (err) {
+    console.log(err);
+  }
+  console.log('\n\nfood_all: ');
+  console.log(food);
 });
