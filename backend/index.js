@@ -1,44 +1,54 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); //import
+const assert = require('assert');
 mongoose.connect('mongodb://localhost/mydb'); //:27017
 
-var myFirstSchema = new mongoose.Schema(
-  { name: String }
-  );
+_foodtruck = 'Sukaldari';
+_rating = 4.85;
 
-var myModel = mongoose.model('myModel', myFirstSchema);
-
-var blum = new myModel({name: 'blumName'});
-console.log('blum: ');
-console.log(blum.name);
-
-myFirstSchema.methods.ingred = function () {
-  var greeting = this.name
-  ? "Meow name is " + this.name
-  : "I don't have a name";
-  console.log(greeting);
-}
-
-var flip = mongoose.model('myFlipModel', myFirstSchema); //collection
-
-var _instance = new flip({name: 'Fluffy'}); //instance of document-schema
-_instance.ingred();
-
-_instance.save( (err, _instance) => {
-  if (err) console.error(err);
-  _instance.ingred();
-});
-
-console.log('rword');
-flip.find( (err, rword) => {
-  if (err) console.error(err);
-  console.log(rword);
-});
-
-
-
-
+//connecting to mongoDB
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', () => {
-  console.log('we are connected');
+  //console.log('we are connected to the database');
+});
+
+//Defining structure for documents
+var food = new mongoose.Schema(
+  { name: String, rating: Number }
+  );
+
+var myModel = mongoose.model('foods', food); //collection
+//instance of document-schema
+//Defining data to add to DB
+var _instance = new myModel({name: _foodtruck, rating: _rating});
+
+//Methods to iteract with database
+function Save_data() {
+  _instance.save( (err, _instance) => {
+    if (err) console.error(err); //error message
+   //console.log('saved data');
+  });
+}
+
+function Retrive_data(uname, callback) {
+  myModel.find({name: uname}, function(err, users) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, users[0]);
+    }
+  });
+};
+
+
+Save_data();
+
+uname = 'Sukaldari'
+
+Retrive_data(uname, function(err, user) {
+  if (err) {
+    console.log(err);
+  }
+  console.log('user: ');
+  console.log(user);
 });
