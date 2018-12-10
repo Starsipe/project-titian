@@ -23,14 +23,14 @@ import { ListComponent } from './components/list/list.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 
 import { FoodsService } from './foods.service';
+import { FormComponent } from './components/create/form/form.component';
 
 const routes: Routes = [
-  {path: 'create', component: CreateComponent},
-  {path: 'edit/:id', component: EditComponent},
-  {path: 'list', component: ListComponent, data: {name: 'hej', rating: 10.0}},
-  {path: '', redirectTo: 'list', pathMatch: 'full'},
-  {path: '**', component: NotfoundComponent},
-
+  { path: 'create', component: CreateComponent },
+  { path: 'edit/:id', component: EditComponent },
+  { path: 'list', component: ListComponent },
+  { path: '', redirectTo: 'list', pathMatch: 'full' }, // home
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
@@ -41,6 +41,7 @@ const routes: Routes = [
     EditComponent,
     ListComponent,
     NotfoundComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
