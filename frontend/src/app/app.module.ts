@@ -13,6 +13,7 @@ import {
   MatIconModule,
   MatMenuModule, MatSidenavModule, MatListModule
 } from '@angular/material';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -21,12 +22,12 @@ import { EditComponent } from './components/edit/edit.component';
 import { ListComponent } from './components/list/list.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 
-import { LayoutModule } from '@angular/cdk/layout';
+import { FoodsService } from './foods.service';
 
 const routes: Routes = [
   {path: 'create', component: CreateComponent},
   {path: 'edit/:id', component: EditComponent},
-  {path: 'list', component: ListComponent},
+  {path: 'list', component: ListComponent, data: {name: 'hej', rating: 10.0}},
   {path: '', redirectTo: 'list', pathMatch: 'full'},
   {path: '**', component: NotfoundComponent},
 
@@ -59,7 +60,7 @@ const routes: Routes = [
     MatListModule,
 
   ],
-  providers: [],
+  providers: [FoodsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

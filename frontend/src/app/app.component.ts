@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+// import { FoodsService } from './foods.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Project-titan';
-  posts = [];
+  // posts = [];
+  // foods = {};
 
-  onPostAdded(post) {
-    this.posts.push(post);
+  /*constructor(private myService: FoodsService) {
+
   }
+  ngOnInit () {
+    this.foods = this.myService.getData();
+  }
+   onPostAdded(post) {
+    this.posts.push(post);
+  } */
 }

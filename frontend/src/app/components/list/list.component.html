@@ -6,8 +6,8 @@
         {{ today | date }}
       </mat-card-subtitle>
     </mat-card-header>
-    <mat-card *ngFor="let food of food_list" class="food-card">
-      <span>{{food.title}}</span>
+    <mat-card *ngFor="let food of foods" class="food-card">
+      <span>{{food.name}}</span>
       <mat-icon id="right">favorite</mat-icon>
       <span id="right">{{food.rating}}</span>
     </mat-card>

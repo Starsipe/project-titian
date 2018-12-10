@@ -1,4 +1,15 @@
 const http = require('http');
+const func = require('./index.js'); //own methods
+
+var data_to_insert = {name: 'pizza', rating: 11.0}; //måste ha den datastruktur
+func.data.Insert_data(data_to_insert);
+var x = func.data.Get_data_by_ID('5c0c18e50b0d8b61cd950c6b');
+console.log('\nx: ');
+console.log(x);
+
+var y = func.data.Get_data();
+console.log('\ny: ');
+console.log(y);
 
 const server = http.createServer(function(req, res){
   if (req.url == '/'){
@@ -17,6 +28,7 @@ server.on('connection', function(socket){
 })
 server.listen(3000);
 console.log('Listening on port 3000 ...');
+
 
 
 /* import express from 'express';

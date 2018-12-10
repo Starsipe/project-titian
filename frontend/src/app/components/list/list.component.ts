@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FoodsService } from '../../foods.service';
 
 @Component({
   selector: 'app-list',
@@ -9,21 +10,14 @@ export class ListComponent implements OnInit {
 
   today: number = Date.now();
 
+  foods = {};
 
-  food_list = [
-    {title: 'Sukaldari', rating: 4.5},
-    {title: 'Shawarma', rating: 4.3},
-    {title: 'Döner', rating: 4.2},
-    {title: 'Pandori', rating: 4.1},
-    {title: 'Falafel', rating: 3.8},
-    {title: 'Hamburgare', rating: 3.2},
-    {title: 'Kebab', rating: 3.1},
-    {title: 'Grillen', rating: 2.9},
-  ];
+  constructor(private myService: FoodsService) { // instans av FoodsService
 
-  constructor() { }
+  }
 
-  ngOnInit() {
+  ngOnInit () {
+    this.foods = this.myService.getData(); // Hämtar data från Service
   }
 
 }

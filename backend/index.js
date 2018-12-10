@@ -23,12 +23,6 @@ var myModel = mongoose.model('foods', food); //collection
 var _instance = new myModel({name: _foodtruck, rating: _rating});
 
 //Methods to iteract with database
-function Insert_data() {
-  _instance.save( (err, _instance) => {
-    if (err) console.error(err);
-    console.log('Data successfully saved to mongoDB');
-  });
-}
 
 function Retrive_data_by_ID(_id, callback) {
   myModel.findById({_id: _id}, function(err, food) {
@@ -50,24 +44,34 @@ function Retrive_data(callback) {
   });
 };
 
+//Methods available for export
+const methods = {
 
-//Example of using methods
+  Insert_data: function (data_to_insert) {
+    var _instance = new myModel({name: data_to_insert.name, rating: data_to_insert.rating});
+    _instance.save( (err, _instance) => {
+      if (err) console.error(err);
+      console.log('Data successfully saved to mongoDB');
+    });
+  },
 
-Insert_data();
+  Get_data_by_ID: function (_id) {
+    var plong = Retrive_data_by_ID(_id, function(err, food) {
+      if (err) {
+        console.log(err);
+      }
+      return food;
+    }); console.log(plong);return plong;
+  },
 
-_id = '5c0c18bb27fce761bacc2757';
-Retrive_data_by_ID(_id, function(err, food) {
-  if (err) {
-    console.log(err);
+  Get_data: function () {
+    Retrive_data(function(err, food) {
+      if (err) {
+        console.log(err);
+      }
+      //console.log('\n\nfood_all: ');
+      //console.log(food);
+    });
   }
-  console.log('food_id: ');
-  console.log(food);
-});
-
-Retrive_data(function(err, food) {
-  if (err) {
-    console.log(err);
-  }
-  console.log('\n\nfood_all: ');
-  console.log(food);
-});
+};
+exports.data = methods; //In order to use these functions in other files
