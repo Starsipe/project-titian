@@ -1,43 +1,56 @@
 <div class="container">
   <div [hidden]="submitted">
     <h1>Ny mat</h1>
+
+    <div [hidden]="!success || submitted">
+        <h4 id="successText">Successfully submitted to the database</h4>
+    </div>
+
     <form (ngSubmit)="onSubmit()" #foodForm="ngForm">
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="_name">Name</label>
         <input type="text" class="form-control" id="name"
+               autocomplete="off"
+               autofocus
                required
-               [(ngModel)]="model.name" name="name"
+               [(ngModel)]="_name" name="name"
                #name="ngModel">
         <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
+             class="alert alert-danger" > <!-- Class => Design of red box-->
           Name is required
         </div>
       </div>
 
       <div class="form-group">
-        <label for="alterEgo">Rating</label>
+        <label for="_rating">Rating</label>
         <input type="number" class="form-control" id="rating"
                 required
-               [(ngModel)]="model.rating" name="rating">
+                min="0" max="10" step="1"
+               [(ngModel)]="_rating" name="rating">
       </div>
 
 
-      <button type="submit" class="btn btn-success" [disabled]="!foodForm.form.valid">Submit</button>
-      <button type="button" class="btn btn-default" (click)="newFood(); foodForm.reset()">New Hero</button>
+      <button type="submit"
+      class="btn btn-success"
+      [disabled]="!foodForm.form.valid">Submit</button>
     </form>
+
   </div>
 
   <div [hidden]="!submitted">
     <h2>You submitted the following:</h2>
     <div class="row">
       <div class="col-xs-3">Name</div>
-      <div class="col-xs-9">{{ model.name }}</div>
+      <div class="col-xs-9">{{ _name }}</div>
     </div>
     <div class="row">
       <div class="col-xs-3">Rating</div>
-      <div class="col-xs-9">{{ model.rating }}</div>
+      <div class="col-xs-9">{{ _rating }}</div>
     </div>
     <br>
     <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+
+    <button (click)="finalSubmit()" class="btn btn-success">OK</button>
   </div>
 </div>
+

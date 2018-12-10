@@ -17,4 +17,9 @@ export class FoodsService {
       {name: 'Kebab', rating: 3.5},
     ];
   }
+
+  submitData() {
+    console.log('Submitted data');
+  }
+
 }
