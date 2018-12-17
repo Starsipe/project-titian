@@ -1,4 +1,31 @@
-const http = require('http');
+const express = require('express');
+const bodyParser = require('body-parser');
+const server = express();
+const mongoose = require('mongoose');
+const myFoodModel = require('food.js');
+
+mongoose.Promise = Promise; // SWitch from callback to promise
+mongoose.connect('mongodb://localhost/mydb').then((err) => {
+  console.log('Connected to Mongoose ...')
+}); //:27017
+
+server.use(bodyParser.json());
+
+server.listen(3000, () => {
+  console.log('Server running on port 3000');
+})
+
+
+
+
+
+
+
+
+
+
+// DET SENASTE
+/* const http = require('http');
 const func = require('./index.js'); //own methods
 
 var data_to_insert = {name: 'pizza', rating: 11.0}; //måste ha den datastruktur
@@ -27,10 +54,18 @@ server.on('connection', function(socket){
   console.log('new connection');
 })
 server.listen(3000);
-console.log('Listening on port 3000 ...');
+console.log('Listening on port 3000 ...'); */
 
 
 
+
+
+
+
+
+
+
+//DET GAMLA
 /* import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';

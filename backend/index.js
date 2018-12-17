@@ -13,9 +13,10 @@ db.once('open', () => {
 });
 
 //Defining structure for documents
-var food = new mongoose.Schema(
-  { name: String, rating: Number }
-  );
+const food = new mongoose.Schema({
+  name: String,
+  rating: Number
+});
 
 var myModel = mongoose.model('foods', food); //collection
 //instance of document-schema
