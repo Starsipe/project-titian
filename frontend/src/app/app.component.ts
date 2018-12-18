@@ -1,23 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-// import { FoodsService } from './foods.service';
+import { FoodsService } from './foods.service';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Project-titan';
-  // posts = [];
-  // foods = {};
+  /* foods: any;
+  path = 'http://localhost:3000/p'; */
 
-  /*constructor(private myService: FoodsService) {
+  constructor(private http: HttpClient) {
 
   }
   ngOnInit () {
-    this.foods = this.myService.getData();
+    // this.getPosts();
   }
-   onPostAdded(post) {
-    this.posts.push(post);
+
+  /* someMethod() {
+    return this.http.get(this.path).pipe(map(res => {
+      return res;
+    }));
+  }
+
+  getPosts() {
+    this.someMethod().subscribe(data => this.foods = data);
+  }
+ */
+
+
+
+
+  /* getPosts() {
+    return this.http.get('http://localhost:3000/p').subscribe((data) => {
+      console.log('food: ');
+      console.log(this.foods);
+      console.log('data: ');
+      console.log(data);
+    });
   } */
 }
+

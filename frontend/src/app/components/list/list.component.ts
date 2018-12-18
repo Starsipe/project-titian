@@ -10,14 +10,20 @@ export class ListComponent implements OnInit {
 
   today: number = Date.now();
 
-  foods = {};
+  foods: any;
 
   constructor(private myService: FoodsService) { // instans av FoodsService
 
   }
 
+  getData() {
+    return this.myService.someMethod().subscribe(data => this.foods = data);
+  }
+
   ngOnInit () {
-    this.foods = this.myService.getData(); // Hämtar data från Service
+    this.getData(); // Hämtar data från Service
+    console.log('foods: ');
+    console.log(this.foods);
   }
 
 }

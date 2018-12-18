@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FoodsService {
 
-  constructor() {}
+  path = 'http://localhost:3000/p';
+  foods: any;
 
-  getData () {
-    return [
-      {name: 'Sukaldari', rating: 4.5},
-      {name: 'Grillen', rating: 4.3},
-      {name: 'Sushi', rating: 4.1},
-      {name: 'Shawarma', rating: 3.8},
-      {name: 'Falafel', rating: 3.7},
-      {name: 'Kebab', rating: 3.5},
-    ];
+  constructor(private http: HttpClient) {}
+
+  someMethod() {
+    return this.http.get(this.path).pipe(map(res => {
+      return res;
+    }));
+  }
+
+  getData() {
+    return this.someMethod().subscribe(data => this.foods = data);
   }
 
 

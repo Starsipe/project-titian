@@ -1,3 +1,6 @@
+// This is not being used as of now
+// Use server.js instead
+
 const mongoose = require('mongoose'); //import
 const assert = require('assert');
 mongoose.connect('mongodb://localhost/mydb'); //:27017

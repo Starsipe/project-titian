@@ -25,6 +25,10 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FoodsService } from './foods.service';
 import { FormComponent } from './components/create/form/form.component';
 
+import {enableProdMode} from '@angular/core';
+
+enableProdMode();
+
 const routes: Routes = [
   { path: 'create', component: CreateComponent },
   { path: 'edit/:id', component: EditComponent },
