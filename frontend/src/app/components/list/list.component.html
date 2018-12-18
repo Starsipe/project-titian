@@ -11,6 +11,24 @@
       <mat-icon id="right">favorite</mat-icon>
       <span id="right">{{food.rating}}</span>
     </mat-card>
+    <hr>
+
+    <mat-expansion-panel *ngFor="let food of foods" [hideToggle]="true" class="food-card">
+      <mat-expansion-panel-header>
+        <div style="text-align: center; width: 100%">
+
+          <span>{{food.name}}</span>
+          <mat-icon id="right">favorite</mat-icon>
+          <span id="right">{{food.rating}}</span>
+          <i class="material-icons" style="color: white; font-size: 40px; margin-top: -15px;">
+            expand_more
+          </i>
+        </div>
+      </mat-expansion-panel-header>
+      <div>
+        <p>{{food._id}}</p>
+      </div>
+    </mat-expansion-panel>
 
 
     <mat-card-actions>

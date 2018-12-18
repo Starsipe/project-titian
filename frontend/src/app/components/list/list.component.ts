@@ -9,7 +9,6 @@ import { FoodsService } from '../../foods.service';
 export class ListComponent implements OnInit {
 
   today: number = Date.now();
-
   foods: any;
 
   constructor(private myService: FoodsService) { // instans av FoodsService
@@ -17,13 +16,11 @@ export class ListComponent implements OnInit {
   }
 
   getData() {
-    return this.myService.someMethod().subscribe(data => this.foods = data);
+    return this.myService.someMethod().subscribe(data => this.foods = data); // Hämtar data från Service
   }
 
   ngOnInit () {
-    this.getData(); // Hämtar data från Service
-    console.log('foods: ');
-    console.log(this.foods);
+    this.getData();
   }
 
 }

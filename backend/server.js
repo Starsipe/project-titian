@@ -16,18 +16,12 @@ server.use(bodyParser.json());
 server.use(cors());
 
 server.get('/p', async (req, res) => {
-  //const {name, rating} = req.body;
   const resp = await myFoodModel.find().sort({'rating':-1}).limit(10); // find fodd top 10 rating
   if (!resp) {
     console.log('Error not found');
   }else{
     res.json(resp); // returning object of foods
   }
-  /* res.send([
-    {name: 'Valencia', rating: 112},
-    {name: 'Hong kong', rating: 111},
-    {name: 'Singapore', rating: 110}
-  ]); */
 })
 
 server.listen(3000, () => {
