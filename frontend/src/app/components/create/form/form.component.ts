@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FoodsService } from '../../../foods.service';
+
 
 @Component({
   selector: 'app-form',
@@ -12,6 +14,9 @@ export class FormComponent {
 
   submitted = false;
   success = false;
+
+  constructor(private myService: FoodsService) { // instans av FoodsService
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -27,11 +32,9 @@ export class FormComponent {
   }
 
   addToDB() {
-    console.log(this._name);
-    console.log(this._rating);
-    console.log(' added to database');
+    // console.log(this._name);
+    // console.log(this._rating);
+    // console.log(' added to database');
+    this.myService.submitData(this._name, this._rating);
   }
-
-  constructor() { }
-
 }

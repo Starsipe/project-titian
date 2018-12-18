@@ -24,8 +24,17 @@ export class FoodsService {
   }
 
 
-  submitData() {
-    console.log('Submitted data');
+  submitData(name, rating) {
+    console.log('name: ', name);
+    console.log('raing: ', rating);
+    console.log('Submitted data from service');
+    this.http.post('http://localhost:3000/t', {name: name, rating: rating})
+                    .subscribe(
+                        (res) => {
+                            console.log(res);
+                        },
+                        err => console.log(err)
+                    );
   }
 
 }
