@@ -5,7 +5,7 @@
 .list-title {
   text-align: center;
 }
-#right {
+.right {
   float: right;
   padding: 5px;
 }
@@ -13,6 +13,12 @@
   width: 50%;
   margin: auto;
   margin-bottom: 20px;
-  background-color: aqua;
+}
+
+.food-card:hover {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 20px;
+  background-color: bisque;
 }
 

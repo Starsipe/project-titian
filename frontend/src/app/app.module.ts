@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { enableProdMode } from '@angular/core';
 import {
   MatInputModule,
   MatCardModule,
@@ -11,9 +12,12 @@ import {
   MatToolbarModule,
   MatExpansionModule,
   MatIconModule,
+  MatDialogModule,
   MatMenuModule, MatSidenavModule, MatListModule
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
+
+import { FoodsService } from './foods.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -21,11 +25,8 @@ import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ListComponent } from './components/list/list.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
-
-import { FoodsService } from './foods.service';
 import { FormComponent } from './components/create/form/form.component';
-
-import {enableProdMode} from '@angular/core';
+import { DialograteComponent } from './components/list/dialograte/dialograte.component';
 
 enableProdMode();
 
@@ -46,6 +47,7 @@ const routes: Routes = [
     ListComponent,
     NotfoundComponent,
     FormComponent,
+    DialograteComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,9 +65,11 @@ const routes: Routes = [
     LayoutModule,
     MatSidenavModule,
     MatListModule,
+    MatDialogModule,
 
   ],
   providers: [FoodsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialograteComponent] // in order to use as dialog
 })
 export class AppModule { }

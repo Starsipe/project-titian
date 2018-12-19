@@ -10,6 +10,9 @@
 #rating {
   width: 70px;
 }
+#restaurant {
+  width: 150px;
+}
 #successText {
-  color: blue; /*#42A948;*/
+  color: #42A948;
 }

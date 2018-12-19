@@ -29,6 +29,16 @@
                [(ngModel)]="_rating" name="rating">
       </div>
 
+      <div class="form-group">
+        <label for="_restaurant">Restaurant</label>
+        <select class="form-control" required
+        [(ngModel)]="_restaurant" name="restaurant" id="restaurant">
+          <option value="Kårallen">Kårallen
+          <option value="Zenit">Zenit
+          <option value="Kebabhuset">Kebabhuset
+          <option value="Foodtruck">Foodtruck
+        </select>
+      </div>
 
       <button type="submit"
       class="btn btn-success"
@@ -47,6 +57,10 @@
       <div class="col-xs-3">Rating</div>
       <div class="col-xs-9">{{ _rating }}</div>
     </div>
+    <div class="row">
+        <div class="col-xs-3">Restaurant</div>
+        <div class="col-xs-9">{{ _restaurant }}</div>
+      </div>
     <br>
     <button class="btn btn-primary" (click)="submitted=false">Edit</button>
 

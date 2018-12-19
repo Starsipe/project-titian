@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FoodsService } from '../../foods.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {DialograteComponent} from './dialograte/dialograte.component';
 
 @Component({
   selector: 'app-list',
@@ -11,8 +13,22 @@ export class ListComponent implements OnInit {
   today: number = Date.now();
   foods: any;
 
-  constructor(private myService: FoodsService) { // instans av FoodsService
+  animal: string;
+  name: string;
 
+  constructor(private myService: FoodsService, public dialog: MatDialog) { // instans av FoodsService
+  }
+
+  openRate(): void {
+    const dialogRef = this.dialog.open(DialograteComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+  dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
   }
 
   getData() {

@@ -11,6 +11,7 @@ export class FormComponent {
 
   _name = '';
   _rating;
+  _restaurant = '';
 
   submitted = false;
   success = false;
@@ -29,12 +30,13 @@ export class FormComponent {
     this.submitted = false;
     this._name = '';
     this._rating = null;
+    this._restaurant = '';
   }
 
   addToDB() {
     // console.log(this._name);
     // console.log(this._rating);
     // console.log(' added to database');
-    this.myService.submitData(this._name, this._rating);
+    this.myService.submitData(this._name, this._rating, this._restaurant);
   }
 }

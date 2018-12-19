@@ -26,11 +26,8 @@ server.get('/p', async (req, res) => {
 
 server.post('/t', function(req, res, next){
   var data = req.body;
-  /* console.log('name: ');
-  console.log(data.name);
-  console.log('\nrating: ');
-  console.log(data.rating); */
-  var _instance = new myFoodModel({name: data.name, rating: data.rating});
+  var _instance = new myFoodModel(
+    {name: data.name, rating: data.rating, restaurant: data.restaurant});
     _instance.save( (err, _instance) => {
       if (err) console.error(err);
       console.log('Data successfully saved to mongoDB');
