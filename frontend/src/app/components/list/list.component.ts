@@ -17,10 +17,15 @@ export class ListComponent implements OnInit {
   }
 
   openRateDialog(foodObj): void {
-    const dialogRef = this.dialog.open(DialograteComponent, {
+    const dialog = this.dialog.open(DialograteComponent, {
       width: '250px',
       data: foodObj
     });
+
+    dialog.afterClosed().subscribe(() => {
+      console.log('dialog closed');
+      this.getData(); // refresh data
+  });
   }
 
   getData() {

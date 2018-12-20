@@ -22,3 +22,18 @@
   background-color: bisque;
 }
 
+@media only screen and (max-width: 600px) {
+  .list-card-wrapper {
+    width: 90%;
+    margin: auto;
+  }
+  .food-card {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  .food-card:hover {
+    width: 90%;
+  }
+}
+

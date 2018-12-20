@@ -37,10 +37,7 @@ server.post('/t', function(req, res, next){
 server.post('/addRating', async function(req, res, next){
   var data = req.body;
   var x = await myFoodModel.find({_id: data.id});
-  console.log('avg: ', x[0].ratingAvg);
-   console.log('len: ', x[0].ratings.length);
   var newAvg = (x[0].ratingAvg * x[0].ratings.length + data.rating)/(x[0].ratings.length + 1); // x being returnd as array with 1 index
-  console.log('avg: ', newAvg);
   // push new rating to ratings list
   myFoodModel.findOneAndUpdate({_id: data.id},
     {$push: {ratings: data.rating}},
@@ -48,7 +45,7 @@ server.post('/addRating', async function(req, res, next){
       if (error) {
           console.log(error);
       } else {
-          console.log('success');
+          console.log('Push success');
       }
   });
 
@@ -59,7 +56,7 @@ server.post('/addRating', async function(req, res, next){
       if (error) {
           console.log(error);
       } else {
-          console.log('success for update');
+          console.log('Update avg success');
       }
   });
 

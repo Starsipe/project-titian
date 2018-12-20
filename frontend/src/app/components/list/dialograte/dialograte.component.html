@@ -10,7 +10,8 @@
         <input type="number" class="form-control" id="rating"
                 required
                 min="0" max="10" step="1"
-               [(ngModel)]="_rating" name="rating">
+               [(ngModel)]="_rating" name="rating"
+               oninput="validity.valid||(value='');">
       </div>
       <button type="submit"
       class="btn btn-success"
