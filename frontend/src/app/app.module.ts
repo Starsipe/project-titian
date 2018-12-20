@@ -16,6 +16,9 @@ import {
   MatMenuModule, MatSidenavModule, MatListModule
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { FoodsService } from './foods.service';
 
@@ -27,6 +30,7 @@ import { ListComponent } from './components/list/list.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FormComponent } from './components/create/form/form.component';
 import { DialograteComponent } from './components/list/dialograte/dialograte.component';
+import { LoginComponent } from './components/login/login.component';
 
 enableProdMode();
 
@@ -34,6 +38,7 @@ const routes: Routes = [
   { path: 'create', component: CreateComponent },
   { path: 'edit/:id', component: EditComponent },
   { path: 'list', component: ListComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'list', pathMatch: 'full' }, // home
   { path: '**', component: NotfoundComponent },
 ];
@@ -48,6 +53,7 @@ const routes: Routes = [
     NotfoundComponent,
     FormComponent,
     DialograteComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +72,20 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
+    AngularFireModule.initializeApp(
+      // Initialize Firebase
+      {
+        apiKey: 'AIzaSyAw6HRPPUD0LCNVP4thQJWtik_yF1SjMDY',
+        authDomain: 'starsipe-8cb0e.firebaseapp.com',
+        databaseURL: 'https://starsipe-8cb0e.firebaseio.com',
+        projectId: 'starsipe-8cb0e',
+        storageBucket: 'starsipe-8cb0e.appspot.com',
+        messagingSenderId: '412941641518'
+      }
+    ),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+
 
   ],
   providers: [FoodsService],

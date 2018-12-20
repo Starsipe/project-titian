@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodsService } from './foods.service';
+import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
