@@ -1,5 +1,21 @@
-<h1 mat-dialog-title></h1>
+<h1 mat-dialog-title>Rate this food</h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
+    <div [hidden]="!submitted">
+        <h4 id="successText">Successfully submitted your rating</h4>
+    </div>
 
-</div>
+    <form (ngSubmit)="onSubmit()" #foodForm="ngForm">
+      <div class="form-group">
+        <label for="_rating">Rating</label>
+        <input type="number" class="form-control" id="rating"
+                required
+                min="0" max="10" step="1"
+               [(ngModel)]="_rating" name="rating">
+      </div>
+      <button type="submit"
+      class="btn btn-success"
+      [disabled]="!foodForm.form.valid || submitted">Submit</button>
+    </form>
+
+  </div>
+

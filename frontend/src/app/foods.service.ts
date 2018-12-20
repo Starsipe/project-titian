@@ -23,10 +23,10 @@ export class FoodsService {
   }
 
   submitData(name, rating, restaurant) {
-    console.log('name: ', name);
-    console.log('rating: ', rating);
-    console.log('restaurant: ', restaurant);
-    console.log('Submitted data from service');
+    // console.log('name: ', name);
+    // console.log('rating: ', rating);
+    // console.log('restaurant: ', restaurant);
+    // console.log('Submitted data from service');
     this.http.post('http://localhost:3000/t',
     {name: name, rating: rating, restaurant: restaurant})
                     .subscribe(
@@ -35,6 +35,18 @@ export class FoodsService {
                         },
                         err => console.log(err)
                     );
+  }
+
+  addRating (rating, id) {
+    this.http.post('http://localhost:3000/addRating',
+    {rating: rating, id: id})
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+          err => console.log(err)
+        );
+
   }
 
 }

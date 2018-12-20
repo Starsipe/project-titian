@@ -16,8 +16,7 @@ export class FormComponent {
   submitted = false;
   success = false;
 
-  constructor(private myService: FoodsService) { // instans av FoodsService
-  }
+  constructor(private myService: FoodsService) {}
 
   onSubmit() {
     this.submitted = true;

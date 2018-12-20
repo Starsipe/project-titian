@@ -1,10 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { FoodsService } from '../../../foods.service';
 
 @Component({
   selector: 'app-dialograte',
@@ -13,12 +9,18 @@ export interface DialogData {
 })
 export class DialograteComponent implements OnInit {
 
-  constructor(
-    public dialogRef: MatDialogRef<DialograteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  _rating;
+  food;
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  submitted = false;
+
+  constructor(private myService: FoodsService, @Inject(MAT_DIALOG_DATA) data) {
+    this.food = data;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    this.myService.addRating(this._rating, this.food._id);
   }
 
   ngOnInit() {}

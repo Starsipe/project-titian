@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const foodSchema = new mongoose.Schema({
   name: String,
-  rating: Number,
+  ratings: [Number],
+  ratingAvg: Number,
   restaurant: String
 });
 

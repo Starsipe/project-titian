@@ -13,21 +13,13 @@ export class ListComponent implements OnInit {
   today: number = Date.now();
   foods: any;
 
-  animal: string;
-  name: string;
-
   constructor(private myService: FoodsService, public dialog: MatDialog) { // instans av FoodsService
   }
 
-  openRate(): void {
+  openRateDialog(foodObj): void {
     const dialogRef = this.dialog.open(DialograteComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
-    });
-
-  dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      data: foodObj
     });
   }
 
