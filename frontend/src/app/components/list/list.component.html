@@ -1,23 +1,60 @@
 <div class="list-card-wrapper">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Dagens topp 10</mat-card-title>
-      <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
-        {{ today | date }}
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card *ngFor="let food of foods" class="food-card">
-        <mat-card-subtitle>
-            {{food.restaurant}}
+  <div class="list-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Zenit</mat-card-title>
+        <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
+          {{ today | date }}
         </mat-card-subtitle>
-      <span>{{food.name}}</span>
-      <mat-icon class="right">favorite</mat-icon>
-      <span class="right">{{food.ratingAvg | number : '1.1-1'}}</span>
-      <mat-card-actions>
-          <button mat-button (click)="openRateDialog(food)">RATE</button>
-        </mat-card-actions>
+      </mat-card-header>
+      <mat-card *ngFor="let food of foods" class="food-card">
+          
+        <mat-card-actions>
+            <button mat-button [disabled]="rated(food._id)" (click)="openRateDialog(food)">RATE</button>
+          </mat-card-actions>
+      </mat-card>
     </mat-card>
-  </mat-card>
+  </div>
+
+  <div class="list-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Dagens topp 10</mat-card-title>
+        <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
+          {{ today | date }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card *ngFor="let food of foods" class="food-card">
+          <mat-card-subtitle>
+              {{food.restaurant}}
+          </mat-card-subtitle>
+        <span>{{food.name}}</span>
+        <mat-icon class="right">favorite</mat-icon>
+        <span class="right">{{food.ratingAvg | number : '1.1-1'}}</span>
+        <mat-card-actions>
+            <button mat-button [disabled]="rated(food._id)" (click)="openRateDialog(food)">RATE</button>
+          </mat-card-actions>
+      </mat-card>
+    </mat-card>
+  </div>
+
+  <div class="list-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Kårallen</mat-card-title>
+        <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
+          {{ today | date }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card *ngFor="let food of karallenFoods" class="food-card">
+          <mat-card-subtitle>
+              {{food.restaurant}}
+          </mat-card-subtitle>
+        <span>{{food.name}}</span>
+        <mat-icon class="right">favorite</mat-icon>
+      </mat-card>
+    </mat-card>
+  </div>
 </div>
 
     <script>

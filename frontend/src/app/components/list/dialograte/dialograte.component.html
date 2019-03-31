@@ -4,7 +4,7 @@
         <h4 id="successText">Successfully submitted your rating</h4>
     </div>
 
-    <form (ngSubmit)="onSubmit()" #foodForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #foodForm="ngForm" >
       <div class="form-group">
         <label for="_rating">Rating</label>
         <input type="number" class="form-control" id="rating"
@@ -17,6 +17,5 @@
       class="btn btn-success"
       [disabled]="!foodForm.form.valid || submitted">Submit</button>
     </form>
-
   </div>
 

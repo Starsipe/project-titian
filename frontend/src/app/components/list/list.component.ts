@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FoodsService } from '../../foods.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {DialograteComponent} from './dialograte/dialograte.component';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-list',
@@ -10,10 +12,21 @@ import {DialograteComponent} from './dialograte/dialograte.component';
 })
 export class ListComponent implements OnInit {
 
-  today: number = Date.now();
-  foods: any;
+  cookieValue: String;
+  hasRated: boolean;
 
-  constructor(private myService: FoodsService, public dialog: MatDialog) { // instans av FoodsService
+  today: number = Date.now();
+  
+  foods: any;
+  karallenFoods: any;
+
+  constructor(private myService: FoodsService,
+   public dialog: MatDialog,
+   private cookieService: CookieService) {
+  }
+
+  ngOnInit () {
+    this.getData();
   }
 
   openRateDialog(foodObj): void {
@@ -25,15 +38,21 @@ export class ListComponent implements OnInit {
     dialog.afterClosed().subscribe(() => {
       console.log('dialog closed');
       this.getData(); // refresh data
-  });
+    });
   }
 
   getData() {
-    return this.myService.someMethod().subscribe(data => this.foods = data); // Hämtar data från Service
+    this.myService.getTop10().subscribe(data => this.foods = data); // Hämtar data från Service
+    this.myService.getKarallen().subscribe(data => this.karallenFoods = data); // Hämtar data från Service
   }
 
-  ngOnInit () {
-    this.getData();
+  rated(foodId){
+    this.cookieValue = this.cookieService.get(foodId);
+    if (this.cookieValue == "1"){
+       return true;
+    } else {
+      return false;
+    }
   }
-
+ 
 }

@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { enableProdMode } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+
 import {
   MatInputModule,
   MatCardModule,
@@ -88,8 +90,9 @@ const routes: Routes = [
 
 
   ],
-  providers: [FoodsService],
+  providers: [FoodsService, CookieService],
   bootstrap: [AppComponent],
-  entryComponents: [DialograteComponent] // in order to use as dialog
+  entryComponents: [DialograteComponent], // in order to use as dialog
+
 })
 export class AppModule { }

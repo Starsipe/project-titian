@@ -9,19 +9,25 @@ import { map } from 'rxjs/operators';
 })
 export class FoodsService {
 
-  path = 'http://localhost:3000/p';
+  top10Path = 'http://localhost:3000/getTop10';
+  karallenPath = 'http://localhost:3000/getKarallen'
   foods: any;
 
   constructor(private http: HttpClient) {}
 
-  someMethod() {
-    return this.http.get(this.path).pipe(map(res => {
+  getTop10() {
+    return this.http.get(this.top10Path).pipe(map(res => {
       return res;
     }));
   }
-
+  getKarallen() {
+    return this.http.get(this.karallenPath).pipe(map(res => {
+      alert(res);
+      return res;
+      }));
+    }
   getData() {
-    return this.someMethod().subscribe(data => this.foods = data);
+    //return this.someMethod().subscribe(data => this.foods = data);
   }
 
   submitData(name, rating, restaurant) {
@@ -29,7 +35,7 @@ export class FoodsService {
     // console.log('rating: ', rating);
     // console.log('restaurant: ', restaurant);
     // console.log('Submitted data from service');
-    this.http.post('http://localhost:3000/t',
+    this.http.post('http://localhost:3000/create',
     {name: name, rating: rating, restaurant: restaurant})
                     .subscribe(
                         (res) => {

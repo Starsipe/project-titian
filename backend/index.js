@@ -1,6 +1,9 @@
 // This is not being used as of now
 // Use server.js instead
 
+
+
+/*
 const mongoose = require('mongoose'); //import
 const assert = require('assert');
 mongoose.connect('mongodb://localhost/mydb'); //:27017
@@ -79,3 +82,4 @@ const methods = {
   }
 };
 exports.data = methods; //In order to use these functions in other files
+*/

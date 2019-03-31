@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { FoodsService } from '../../../foods.service';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-dialograte',
@@ -9,20 +11,43 @@ import { FoodsService } from '../../../foods.service';
 })
 export class DialograteComponent implements OnInit {
 
-  _rating;
+  cookieValue: String;
+  _rating: number;
   food;
 
   submitted = false;
 
-  constructor(private myService: FoodsService, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(
+    private myService: FoodsService,
+   @Inject(MAT_DIALOG_DATA) data, 
+   private cookieService: CookieService) {
     this.food = data;
   }
 
   onSubmit() {
     this.submitted = true;
     this.myService.addRating(this._rating, this.food._id);
+    this.onRate();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cookieValue = this.cookieService.get(this.food._id);
+    if (this.cookieValue == "1"){
+      this.submitted=true;
+    }
+  }
+  onRate(){
+    this.cookieService.set( this.food._id , '1' );
+    this.cookieValue = this.cookieService.get(this.food._id);
+    if (this.cookieValue == "1"){
+      this.submitted=true;
+    }
+
+  }
+  clearCookies(){
+    this.cookieService.set( this.food._id, '0' );
+    this.cookieValue = this.cookieService.get(this.food._id);
+      this.submitted=false;
+    }
 
 }

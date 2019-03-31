@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const server = express();
 const mongoose = require('mongoose');
 const myFoodModel = require('./food.js');
+const karallenModel = require('./karallen.js'); // samma sak som karallenmodel = function{...}
 
 const cors = require('cors');
-
 
 mongoose.Promise = Promise; // SWitch from callback to promise
 mongoose.connect('mongodb://localhost/mydb').then((err) => {
@@ -15,8 +15,8 @@ mongoose.connect('mongodb://localhost/mydb').then((err) => {
 server.use(bodyParser.json());
 server.use(cors());
 
-server.get('/p', async (req, res) => {
-  const resp = await myFoodModel.find().sort({'ratingAvg':-1}).limit(10); // find fodd top 10 rating
+server.get('/getTop10', async (req, res) => {
+  const resp = await myFoodModel.find().sort({'ratingAvg':-1}).limit(10); // find food top 10 rating
   if (!resp) {
     console.log('Error not found');
   }else{
@@ -24,7 +24,17 @@ server.get('/p', async (req, res) => {
   }
 });
 
-server.post('/t', function(req, res, next){
+server.get('/getKarallen', async (req, res) => {
+  //const resp = await karallenModel.find({});
+  const resp = await karallenModel.find();
+  if (!resp) {
+    console.log('Error not found');
+  }else{
+    res.json(resp); // returning object of foods
+  }
+});
+
+server.post('/create', function(req, res, next){
   var data = req.body;
   var _instance = new myFoodModel(
     {name: data.name, ratings: data.rating, ratingAvg: data.rating, restaurant: data.restaurant});
