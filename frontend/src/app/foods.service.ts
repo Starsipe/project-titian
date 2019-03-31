@@ -10,7 +10,8 @@ import { map } from 'rxjs/operators';
 export class FoodsService {
 
   top10Path = 'http://localhost:3000/getTop10';
-  karallenPath = 'http://localhost:3000/getKarallen'
+  karallenPath = 'http://localhost:3000/getKarallen';
+  zenitPath = 'http://localhost:3000/getZenit';
   foods: any;
 
   constructor(private http: HttpClient) {}
@@ -22,10 +23,15 @@ export class FoodsService {
   }
   getKarallen() {
     return this.http.get(this.karallenPath).pipe(map(res => {
-      alert(res);
       return res;
-      }));
-    }
+    }));
+  }
+  getZenit() {
+    return this.http.get(this.zenitPath).pipe(map(res => {
+      return res;
+    }));
+  }
+
   getData() {
     //return this.someMethod().subscribe(data => this.foods = data);
   }

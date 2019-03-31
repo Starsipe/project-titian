@@ -20,3 +20,18 @@ class KarallenData(object):
 			menu.append(temp2[0].text)
 
 		return menu;
+
+class ZenitData(object):
+
+		
+	def getMenu(self):
+		res = requests.get('http://www.hors.se/restaurang/restaurang-zenit/')
+		soup =  bs4.BeautifulSoup(res.text, 'lxml')
+
+		menu = []
+		day = soup.find_all('div', {"class" : "col-xs-10 text-left"})
+		
+		for i in range(0,len(day)):
+			menu.append(day[i].text.strip())
+
+		return menu;

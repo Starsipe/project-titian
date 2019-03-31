@@ -4,6 +4,7 @@ const server = express();
 const mongoose = require('mongoose');
 const myFoodModel = require('./food.js');
 const karallenModel = require('./karallen.js'); // samma sak som karallenmodel = function{...}
+const zenitModel = require('./zenit.js');
 
 const cors = require('cors');
 
@@ -25,8 +26,16 @@ server.get('/getTop10', async (req, res) => {
 });
 
 server.get('/getKarallen', async (req, res) => {
-  //const resp = await karallenModel.find({});
   const resp = await karallenModel.find();
+  if (!resp) {
+    console.log('Error not found');
+  }else{
+    res.json(resp); // returning object of foods
+  }
+});
+
+server.get('/getZenit', async (req, res) => {
+  const resp = await zenitModel.find();
   if (!resp) {
     console.log('Error not found');
   }else{
