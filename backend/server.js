@@ -43,19 +43,42 @@ server.get('/getZenit', async (req, res) => {
   }
 });
 
-server.post('/create', function(req, res, next){
-  var data = req.body;
+function insertData(data){
+console.log("\n\n" + data.name + "\n\n");
   var _instance = new myFoodModel(
     {name: data.name, ratings: data.rating, ratingAvg: data.rating, restaurant: data.restaurant});
     _instance.save( (err, _instance) => {
       if (err) console.error(err);
       console.log('Data successfully saved to mongoDB');
     });
+}
+
+server.post('/create', function(req, res, next){
+  var data = req.body;
+    insertData(data);
 });
 
 server.post('/addRating', async function(req, res, next){
   var data = req.body;
-  var x = await myFoodModel.find({_id: data.id});
+
+  var x;
+ // var myModel;
+
+  if(data.ratingAvg == 0){
+    if(data.restaurant == "Zenit"){
+      x = await zenitModel.find({_id: data.id});
+      insertData(data);
+     // myModel = zenitModel;
+    } else {
+      x = await karallenModel.find({_id: data.id});
+      insertData(data);
+      //myModel = karallenmodel;
+    }
+  } else{
+    x = await myFoodModel.find({_id: data.id});
+   // myModel = myFoodModel;
+  }
+
   var newAvg = (x[0].ratingAvg * x[0].ratings.length + data.rating)/(x[0].ratings.length + 1); // x being returnd as array with 1 index
   // push new rating to ratings list
   myFoodModel.findOneAndUpdate({_id: data.id},

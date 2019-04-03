@@ -36,7 +36,9 @@ def getData():
       
     for item in karallenMenu:
         emp_rec1 = { 
-            "name":item, 
+            "name":item,
+            "ratings": [0],
+            "ratingAvg": 0,
             "restaurant":"Kårallen"
             }
         rec_id1 = collection.insert_one(emp_rec1) 
@@ -46,10 +48,12 @@ def getData():
     # Created or Switched to collection names:
     collection = db.zenits
     db.zenits.delete_many({}) #töm tidigare data
-      
+
     for item in zenitMenu:
         emp_rec2 = { 
-            "name":item, 
+            "name":item,
+            "ratings": [0],
+            "ratingAvg": 0,
             "restaurant":"Zenit"
             }
         rec_id2 = collection.insert_one(emp_rec2)
@@ -57,7 +61,7 @@ def getData():
 
 
 
-schedule.every().day.at("17:05").do(getData)
+schedule.every().day.at("10:12").do(getData)
 
 while True:
     schedule.run_pending()

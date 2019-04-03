@@ -51,9 +51,16 @@ export class FoodsService {
                     );
   }
 
-  addRating (rating, id) {
+  addRating (rating, food_data ) {
     this.http.post('http://localhost:3000/addRating',
-    {rating: rating, id: id})
+    {
+      rating: rating,
+      id: food_data._id,
+      ratingAvg: food_data.ratingAvg,
+      restaurant: food_data.restaurant,
+      name: food_data.name,
+
+    })
       .subscribe(
         (res) => {
           console.log(res);

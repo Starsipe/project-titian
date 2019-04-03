@@ -46,11 +46,10 @@ export class ListComponent implements OnInit {
     this.myService.getTop10().subscribe(data => this.foods = data); // Hämtar data från Service
     this.myService.getKarallen().subscribe(data => this.karallenFoods = data); // Hämtar data från Service
     this.myService.getZenit().subscribe(data => this.zenitFoods = data); // Hämtar data från Service
-    
-
   }
 
   rated(foodId){
+    //return false;
     this.cookieValue = this.cookieService.get(foodId);
     if (this.cookieValue == "1"){
        return true;
@@ -58,5 +57,4 @@ export class ListComponent implements OnInit {
       return false;
     }
   }
- 
 }

@@ -26,7 +26,7 @@ export class DialograteComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.myService.addRating(this._rating, this.food._id);
+    this.myService.addRating(this._rating, this.food);
     this.onRate();
   }
 
@@ -34,6 +34,7 @@ export class DialograteComponent implements OnInit {
     this.cookieValue = this.cookieService.get(this.food._id);
     if (this.cookieValue == "1"){
       this.submitted=true;
+      //this.submitted == false;
     }
   }
   onRate(){
@@ -42,12 +43,10 @@ export class DialograteComponent implements OnInit {
     if (this.cookieValue == "1"){
       this.submitted=true;
     }
-
   }
   clearCookies(){
     this.cookieService.set( this.food._id, '0' );
     this.cookieValue = this.cookieService.get(this.food._id);
-      this.submitted=false;
+    this.submitted=false;
     }
-
 }

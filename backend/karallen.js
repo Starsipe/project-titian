@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 const karallenSchema = new mongoose.Schema({
   name: String,
+  ratings: [Number],
+  ratingAvg: Number,
   restaurant: String
 });
 
