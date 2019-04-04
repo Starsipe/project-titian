@@ -7,6 +7,14 @@ from web_scraper import ZenitData
 from pymongo import MongoClient 
 
 
+def inDB(item, foodCollection):
+    #set available false for all 
+    foodCollection.updateMany({}, {$set: {available: false}})
+
+    for foodItem in foodCollection.find():
+        if item == foodItem['name']:
+            return [1, foodItem]
+    return [0, None]
 
 def getData():
 
@@ -33,39 +41,54 @@ def getData():
     # Created or Switched to collection names:
     collection = db.karallens
     db.karallens.delete_many({}) #töm tidigare data
-      
+
+    foodCollection = db.foods
+  
     for item in karallenMenu:
-        emp_rec1 = { 
-            "name":item,
-            "ratings": [0],
-            "ratingAvg": 0,
-            "restaurant":"Kårallen"
+        x = inDB(item, foodCollection)
+        if x[0] == 1:
+            emp_rec1 = x[1]
+        else:
+            emp_rec1 = { 
+                "name":item,
+                "ratings": [0],
+                "ratingAvg": 0,
+                "restaurant":"Kårallen",
+                "available": True,
             }
         rec_id1 = collection.insert_one(emp_rec1) 
       
     print("Data inserted with record ids",rec_id1) 
+
+
+
 
     # Created or Switched to collection names:
     collection = db.zenits
     db.zenits.delete_many({}) #töm tidigare data
 
     for item in zenitMenu:
-        emp_rec2 = { 
-            "name":item,
-            "ratings": [0],
-            "ratingAvg": 0,
-            "restaurant":"Zenit"
-            }
+        x = inDB(item, foodCollection)
+        if x[0] == 1:
+            emp_rec2 = x[1]
+        else:
+            emp_rec2 = { 
+                "name":item,
+                "ratings": [0],
+                "ratingAvg": 0,
+                "restaurant":"Zenit",
+                "available": True,
+                }
         rec_id2 = collection.insert_one(emp_rec2)
       
 
+getData()
 
+#schedule.every().day.at("13:43").do(getData)
 
-schedule.every().day.at("10:12").do(getData)
-
-while True:
-    schedule.run_pending()
-    time.sleep(60) # wait one minute
+#while True:
+#    schedule.run_pending()
+#    time.sleep(60) # wait one minute
 
 
 

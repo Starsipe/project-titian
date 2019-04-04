@@ -13,6 +13,21 @@
   margin: 15px;
 }
 
+.list-card-trucks{
+  /*border: 2px solid red;*/
+  /*float: left;*/
+  width: 100%;
+  margin: auto;
+}
+
+.list-card-wrapper-trucks{
+  border: 2px solid red;
+  display: inline-flex;
+  /*float: left;*/
+  width: 100%;
+  margin: auto;
+}
+
 .list-title {
   text-align: center;
 }

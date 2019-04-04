@@ -32,13 +32,19 @@
 
       <div class="form-group">
         <label for="_restaurant">Restaurant</label>
-        <select class="form-control" required
+        <br>
+        <mat-select class="form-control" required
         [(ngModel)]="_restaurant" name="restaurant" id="restaurant">
-          <option value="Kårallen">Kårallen
-          <option value="Zenit">Zenit
-          <option value="Kebabhuset">Kebabhuset
-          <option value="Foodtruck">Foodtruck
-        </select>
+          <mat-option value=Mocado>Mocado</mat-option>
+          <mat-option value=Sukaldari>Sukaldari</mat-option>
+          <mat-option value=Kebabhuset>Kebabhuset</mat-option>
+          <mat-option value=Foodtruck>Foodtruck</mat-option>
+        </mat-select>
+        <br>
+        <br>
+        <label>Always available? </label>
+        <mat-checkbox
+        [(ngModel)]="_available" name="available" id="available"></mat-checkbox>
       </div>
 
       <button type="submit"
@@ -61,7 +67,11 @@
     <div class="row">
         <div class="col-xs-3">Restaurant</div>
         <div class="col-xs-9">{{ _restaurant }}</div>
-      </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Is available everyday?</div>
+        <div class="col-xs-9">{{ _available }}</div>
+    </div>
     <br>
     <button class="btn btn-primary" (click)="submitted=false">Edit</button>
 

@@ -15,7 +15,11 @@ import {
   MatExpansionModule,
   MatIconModule,
   MatDialogModule,
-  MatMenuModule, MatSidenavModule, MatListModule
+  MatMenuModule,
+  MatSidenavModule,
+  MatListModule,
+  MatSelectModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AngularFireModule } from 'angularfire2';
@@ -74,6 +78,9 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
+    MatSelectModule,
+    MatCheckboxModule,
+
     AngularFireModule.initializeApp(
       // Initialize Firebase
       {

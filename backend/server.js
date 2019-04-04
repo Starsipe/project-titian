@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const myFoodModel = require('./food.js');
 const karallenModel = require('./karallen.js'); // samma sak som karallenmodel = function{...}
 const zenitModel = require('./zenit.js');
+//const foodTruckModel = require('./foodTruck.js');
 
 const cors = require('cors');
 
@@ -43,10 +44,42 @@ server.get('/getZenit', async (req, res) => {
   }
 });
 
+server.get('/getFoodTruck', async (req, res) => {
+  const resp = await myFoodModel.find({restaurant: 'Foodtruck'});
+  if (!resp) {
+    console.log('Error not found');
+  }else{
+    res.json(resp); // returning object of foods
+  }
+});
+
+server.get('/getMocado', async (req, res) => {
+  const resp = await myFoodModel.find({restaurant: 'Mocado'});
+  if (!resp) {
+    console.log('Error not found');
+  }else{
+    res.json(resp); // returning object of foods
+  }
+});
+
+server.get('/getKebabHuset', async (req, res) => {
+  const resp = await myFoodModel.find({restaurant: 'Kebabhuset'});
+  if (!resp) {
+    console.log('Error not found');
+  }else{
+    res.json(resp); // returning object of foods
+  }
+});
+
 function insertData(data){
-console.log("\n\n" + data.name + "\n\n");
   var _instance = new myFoodModel(
-    {name: data.name, ratings: data.rating, ratingAvg: data.rating, restaurant: data.restaurant});
+    {
+      name: data.name,
+      ratings: data.rating,
+      ratingAvg: data.rating,
+      restaurant: data.restaurant,
+      available: data.available
+    });
     _instance.save( (err, _instance) => {
       if (err) console.error(err);
       console.log('Data successfully saved to mongoDB');
@@ -67,6 +100,7 @@ server.post('/addRating', async function(req, res, next){
   if(data.ratingAvg == 0){
     if(data.restaurant == "Zenit"){
       x = await zenitModel.find({_id: data.id});
+      console.log("\n\n"+data.available);
       insertData(data);
      // myModel = zenitModel;
     } else {

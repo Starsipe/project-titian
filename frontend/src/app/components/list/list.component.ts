@@ -20,6 +20,9 @@ export class ListComponent implements OnInit {
   foods: any;
   karallenFoods: any;
   zenitFoods: any;
+  foodTruckFoods: any;
+  mocadoFoods: any;
+  kebabHusetFoods: any;
 
   constructor(private myService: FoodsService,
    public dialog: MatDialog,
@@ -46,6 +49,10 @@ export class ListComponent implements OnInit {
     this.myService.getTop10().subscribe(data => this.foods = data); // Hämtar data från Service
     this.myService.getKarallen().subscribe(data => this.karallenFoods = data); // Hämtar data från Service
     this.myService.getZenit().subscribe(data => this.zenitFoods = data); // Hämtar data från Service
+    this.myService.getFoodtruck().subscribe(data => this.foodTruckFoods = data); // Hämtar data från Service
+    this.myService.getMocado().subscribe(data => this.mocadoFoods = data); // Hämtar data från Service
+    this.myService.getKebabHuset().subscribe(data => this.kebabHusetFoods = data); // Hämtar data från Service
+
   }
 
   rated(foodId){

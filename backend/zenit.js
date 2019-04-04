@@ -6,7 +6,8 @@ const zenitSchema = new mongoose.Schema({
   name: String,
   ratings: [Number],
   ratingAvg: Number,
-  restaurant: String
+  restaurant: String,
+  available: Boolean,
 });
 
 var zenitModel = mongoose.model('zenits', zenitSchema); //collection

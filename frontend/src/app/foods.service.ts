@@ -12,6 +12,10 @@ export class FoodsService {
   top10Path = 'http://localhost:3000/getTop10';
   karallenPath = 'http://localhost:3000/getKarallen';
   zenitPath = 'http://localhost:3000/getZenit';
+  foodTruckPath = 'http://localhost:3000/getFoodTruck';
+  mocadoPath = 'http://localhost:3000/getMocado';
+  kebabHusetPath = 'http://localhost:3000/getKebabHuset';
+
   foods: any;
 
   constructor(private http: HttpClient) {}
@@ -31,24 +35,38 @@ export class FoodsService {
       return res;
     }));
   }
-
-  getData() {
-    //return this.someMethod().subscribe(data => this.foods = data);
+  getFoodtruck() {
+    return this.http.get(this.foodTruckPath).pipe(map(res => {
+        return res;
+    }));
   }
+  getMocado() {
+    return this.http.get(this.mocadoPath).pipe(map(res => {
+        return res;
+    }));
+  }
+  getKebabHuset() {
+    return this.http.get(this.kebabHusetPath).pipe(map(res => {
+        return res;
+    }));
+  }
+  
 
-  submitData(name, rating, restaurant) {
-    // console.log('name: ', name);
-    // console.log('rating: ', rating);
-    // console.log('restaurant: ', restaurant);
-    // console.log('Submitted data from service');
+  submitData(name, rating, restaurant, available) {
+
     this.http.post('http://localhost:3000/create',
-    {name: name, rating: rating, restaurant: restaurant})
-                    .subscribe(
-                        (res) => {
-                            console.log(res);
-                        },
-                        err => console.log(err)
-                    );
+    {
+      name: name,
+      rating: rating,
+      restaurant: restaurant,
+      available: available,
+
+    }).subscribe(
+       (res) => {
+          console.log(res);
+        },
+          err => console.log(err)
+        );
   }
 
   addRating (rating, food_data ) {
@@ -67,7 +85,5 @@ export class FoodsService {
         },
           err => console.log(err)
         );
-
   }
-
 }
