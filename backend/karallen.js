@@ -7,7 +7,8 @@ const karallenSchema = new mongoose.Schema({
   ratings: [Number],
   ratingAvg: Number,
   restaurant: String,
-  available: Boolean
+  available: Boolean,
+  price: Number,
 });
 
 var karallenModel = mongoose.model('karallens', karallenSchema); //collection

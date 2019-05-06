@@ -19,7 +19,8 @@ import {
   MatSidenavModule,
   MatListModule,
   MatSelectModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  
 } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AngularFireModule } from 'angularfire2';

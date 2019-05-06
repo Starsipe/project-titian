@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FoodsService } from '../../foods.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {DialograteComponent} from './dialograte/dialograte.component';
@@ -23,6 +23,8 @@ export class ListComponent implements OnInit {
   foodTruckFoods: any;
   mocadoFoods: any;
   kebabHusetFoods: any;
+
+  trucks = [];
 
   constructor(private myService: FoodsService,
    public dialog: MatDialog,
@@ -49,9 +51,18 @@ export class ListComponent implements OnInit {
     this.myService.getTop10().subscribe(data => this.foods = data); // Hämtar data från Service
     this.myService.getKarallen().subscribe(data => this.karallenFoods = data); // Hämtar data från Service
     this.myService.getZenit().subscribe(data => this.zenitFoods = data); // Hämtar data från Service
-    this.myService.getFoodtruck().subscribe(data => this.foodTruckFoods = data); // Hämtar data från Service
-    this.myService.getMocado().subscribe(data => this.mocadoFoods = data); // Hämtar data från Service
-    this.myService.getKebabHuset().subscribe(data => this.kebabHusetFoods = data); // Hämtar data från Service
+    this.myService.getFoodtruck().subscribe(data => { 
+        this.foodTruckFoods = data;
+        this.trucks.push(this.foodTruckFoods);
+    });
+    this.myService.getMocado().subscribe(data => {
+      this.mocadoFoods = data;
+      this.trucks.push(this.mocadoFoods);
+    });
+    this.myService.getKebabHuset().subscribe(data => {
+      this.kebabHusetFoods = data;
+      this.trucks.push(this.kebabHusetFoods);
+    }); 
 
   }
 

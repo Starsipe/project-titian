@@ -17,5 +17,9 @@
       class="btn btn-success"
       [disabled]="!foodForm.form.valid || submitted">Submit</button>
     </form>
+    <button 
+      class="btn btn-success"
+      (click)="deleteFood()"
+      >Delete</button>
   </div>
 

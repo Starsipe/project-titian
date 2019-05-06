@@ -8,7 +8,7 @@
 
     <form (ngSubmit)="onSubmit()" #foodForm="ngForm">
       <div class="form-group">
-        <label for="_name">Name</label>
+        <label for="_name">Namn</label>
         <input type="text" class="form-control" id="name"
                autocomplete="off"
                autofocus
@@ -22,11 +22,20 @@
       </div>
 
       <div class="form-group">
-        <label for="_rating">Rating</label>
+        <label for="_rating">Hur gott?</label>
         <input type="number" class="form-control" id="rating"
                 required
                 min="0" max="10" step="1"
                [(ngModel)]="_rating" name="rating"
+               oninput="validity.valid||(value='');">
+      </div>
+
+      <div class="form-group">
+        <label for="_price">Pris</label>
+        <input type="number" class="form-control" id="price"
+                required id="rating"
+                min="0" max="100" step="1"
+               [(ngModel)]="_price" name="price"
                oninput="validity.valid||(value='');">
       </div>
 
@@ -36,7 +45,6 @@
         <mat-select class="form-control" required
         [(ngModel)]="_restaurant" name="restaurant" id="restaurant">
           <mat-option value=Mocado>Mocado</mat-option>
-          <mat-option value=Sukaldari>Sukaldari</mat-option>
           <mat-option value=Kebabhuset>Kebabhuset</mat-option>
           <mat-option value=Foodtruck>Foodtruck</mat-option>
         </mat-select>
@@ -46,6 +54,8 @@
         <mat-checkbox
         [(ngModel)]="_available" name="available" id="available"></mat-checkbox>
       </div>
+
+      
 
       <button type="submit"
       class="btn btn-success"
@@ -57,19 +67,25 @@
   <div [hidden]="!submitted">
     <h2>You submitted the following:</h2>
     <div class="row">
-      <div class="col-xs-3">Name</div>
+      <div class="col-xs-3"><b>Namn</b></div>
       <div class="col-xs-9">{{ _name }}</div>
     </div>
     <div class="row">
-      <div class="col-xs-3">Rating</div>
-      <div class="col-xs-9">{{ _rating }}</div>
+      <div class="col-xs-3"><b>Betyg</b></div>
+      <div class="col-xs-9">{{ _rating }} / 10</div>
     </div>
     <div class="row">
-        <div class="col-xs-3">Restaurant</div>
+        <div class="col-xs-3"><b>Pris</b></div>
+        <div class="col-xs-9">{{ _price }} kr</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3"><b>Restaurant</b></div>
         <div class="col-xs-9">{{ _restaurant }}</div>
     </div>
+
     <div class="row">
-        <div class="col-xs-3">Is available everyday?</div>
+        <div class="col-xs-3"><b>Is available everyday?</b></div>
+        <br>
         <div class="col-xs-9">{{ _available }}</div>
     </div>
     <br>

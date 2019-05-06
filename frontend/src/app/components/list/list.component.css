@@ -1,8 +1,9 @@
 .list-card-wrapper {
-  width:98%;
+  width:100%;
   margin: auto;
+  background-color: black;
  /* display: block;*/
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   /*margin: auto;*/
 }
 
@@ -21,7 +22,6 @@
 }
 
 .list-card-wrapper-trucks{
-  border: 2px solid red;
   display: inline-flex;
   /*float: left;*/
   width: 100%;
@@ -47,19 +47,33 @@
   margin-bottom: 20px;*/
   background-color: bisque;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+  }
 
 @media only screen and (max-width: 600px) {
   .list-card-wrapper {
-    width: 90%;
-    margin: auto;
-  }
-  .food-card {
-    width: 90%;
-    margin: auto;
-    margin-bottom: 20px;
-  }
-  .food-card:hover {
-    width: 90%;
-  }
+  width:100%;
+  margin: auto;
+ /* display: block;*/
+  /*border: 1px solid black;*/
+  /*margin: auto;*/
+}
+
+.list-card{
+  /*border: 2px solid red;*/
+ /* float: left;*/
+  width: 95%;
+  margin: 15px;
+}
+
+.list-card-trucks{
+  /*border: 2px solid red;*/
+  /*float: left;*/
+  width: 100%;
+  margin: auto;
+}
+  
 }
 

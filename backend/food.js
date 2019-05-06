@@ -6,6 +6,7 @@ const foodSchema = new mongoose.Schema({
   ratingAvg: Number,
   restaurant: String,
   available: Boolean,
+  price: Number,
 });
 
 var myFoodModel = mongoose.model('foods', foodSchema); //collection

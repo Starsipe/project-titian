@@ -11,6 +11,7 @@ export class FormComponent {
 
   _name = '';
   _rating;
+  _price;
   _restaurant = '';
   _available = false;
 
@@ -30,6 +31,7 @@ export class FormComponent {
     this.submitted = false;
     this._name = '';
     this._rating = null;
+    this._price = null;
     this._restaurant = '';
   }
 
@@ -41,6 +43,8 @@ export class FormComponent {
       this._name,
       this._rating,
       this._restaurant,
-      this._available);
+      this._available,
+      this._price,
+      );
   }
 }

@@ -1,31 +1,9 @@
 <div class="list-card-wrapper">
-  <div class="list-card">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Zenit</mat-card-title>
-        <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
-          {{ today | date }}
-        </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card *ngFor="let food of zenitFoods" class="food-card">
-          <mat-card-subtitle>
-              {{food.restaurant}}
-          </mat-card-subtitle>
-        <span>{{food.name}}</span>
-        <mat-icon class="right">favorite</mat-icon>
-        <span *ngIf="food.ratingAvg != 0" class="right">{{food.ratingAvg | number : '1.1-1'}}</span>
-        <span *ngIf="food.ratingAvg == 0" class="right">-</span>
-        <mat-card-actions>
-            <button mat-button [disabled]="rated(food._id)" (click)="openRateDialog(food)">RATE</button>
-          </mat-card-actions>
-      </mat-card>
-    </mat-card>
-  </div>
 
   <div class="list-card">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Dagens topp 10</mat-card-title>
+        <mat-card-title>Dagens topp 5</mat-card-title>
         <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
           {{ today | date }}
         </mat-card-subtitle>
@@ -34,10 +12,14 @@
           <mat-card-subtitle>
               {{food.restaurant}}
           </mat-card-subtitle>
-        <span>{{food.name}}</span>
+        <span><b>{{food.name}}</b></span>
+        <hr>
         <mat-icon class="right">favorite</mat-icon>
-        <span class="right">{{food.ratingAvg | number : '1.1-1'}}</span>
+        <span class="right"><b>{{food.ratingAvg | number : '1.1-1'}}</b></span>
         <span *ngIf="food.available == false" class="right"><b style="color:red">Not available</b></span>
+        
+        <span style="color:green">{{food.price}} kr</span>
+
         <mat-card-actions>
             <button mat-button [disabled]="rated(food._id)" (click)="openRateDialog(food)">RATE</button>
           </mat-card-actions>
@@ -48,7 +30,39 @@
   <div class="list-card">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Kårallen</mat-card-title>
+        <mat-card-title>
+          <a target="_blank" href="http://www.hors.se/restaurang/restaurang-zenit/">Zenit</a>
+          </mat-card-title>
+        <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
+          {{ today | date }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card *ngFor="let food of zenitFoods" class="food-card">
+          <mat-card-subtitle>
+              {{food.restaurant}}
+          </mat-card-subtitle>
+        <span><b>{{food.name}}</b></span>
+        <hr>
+        <mat-icon class="right">favorite</mat-icon>
+        <span *ngIf="food.ratingAvg != 0" class="right"><b>{{food.ratingAvg | number : '1.1-1'}}</b></span>
+        <span *ngIf="food.ratingAvg == 0" class="right">-</span>
+        <span *ngIf="food.available == false" class="right"><b style="color:red">Not available</b></span>
+        
+        <span style="color:green">{{food.price}} kr</span>
+        
+        <mat-card-actions>
+            <button mat-button [disabled]="rated(food._id)" (click)="openRateDialog(food)">RATE</button>
+          </mat-card-actions>
+      </mat-card>
+    </mat-card>
+  </div>
+
+  <div class="list-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <a target="_blank" href="https://eurest.mashie.com/public/menu/restaurang+k%C3%A5rallen/a4160fd5?country=se">Kårallen</a>
+          </mat-card-title>
         <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
           {{ today | date }}
         </mat-card-subtitle>
@@ -57,10 +71,14 @@
          <mat-card-subtitle>
               {{food.restaurant}}
           </mat-card-subtitle>
-        <span>{{food.name}}</span>
+        <span><b>{{food.name}}</b></span>
+        <hr>
         <mat-icon class="right">favorite</mat-icon>
-        <span *ngIf="food.ratingAvg != 0" class="right">{{food.ratingAvg | number : '1.1-1'}}</span>
+        <span *ngIf="food.ratingAvg != 0" class="right"><b>{{food.ratingAvg | number : '1.1-1'}}</b></span>
         <span *ngIf="food.ratingAvg == 0" class="right">-</span>
+        <span *ngIf="food.available == false" class="right"><b style="color:red">Not available</b></span>
+        
+        <span style="color:green">{{food.price}} kr</span>
         <mat-card-actions>
             <button mat-button [disabled]="rated(food._id)" (click)="openRateDialog(food)">RATE</button>
           </mat-card-actions>
@@ -76,13 +94,10 @@
             {{ today | date }}
         </mat-card-subtitle>
       </mat-card-header>
-      <div *ngFor="let truck of [
-      foodTruckFoods,
-      mocadoFoods,
-      kebabHusetFoods]" class="list-card">
+      <div *ngFor="let truck of trucks" class="list-card">
         <mat-card>
           <mat-card-header>
-            <mat-card-title>{{truck[0].restaurant}}</mat-card-title>
+            <mat-card-title>{{truck.restaurant}}</mat-card-title>
             <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
              {{ today | date }}
             </mat-card-subtitle>
@@ -91,10 +106,14 @@
             <mat-card-subtitle>
                   {{food.restaurant}}
               </mat-card-subtitle>
-            <span>{{food.name}}</span>
+            <span><b>{{food.name}}</b></span>
+            <hr>
             <mat-icon class="right">favorite</mat-icon>
-            <span *ngIf="food.ratingAvg != 0" class="right">{{food.ratingAvg | number : '1.1-1'}}</span>
+            <span *ngIf="food.ratingAvg != 0" class="right"><b>{{food.ratingAvg | number : '1.1-1'}}</b></span>
             <span *ngIf="food.ratingAvg == 0" class="right">-</span>
+            <span *ngIf="food.available == false" class="right"><b style="color:red">Not available</b></span>
+            
+            <span style="color:green">{{food.price}} kr</span>
             <mat-card-actions>
                 <button mat-button [disabled]="rated(food._id)" (click)="openRateDialog(food)">RATE</button>
             </mat-card-actions>

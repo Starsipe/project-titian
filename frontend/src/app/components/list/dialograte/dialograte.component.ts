@@ -11,8 +11,10 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class DialograteComponent implements OnInit {
 
+ // @Output() rated = new EventEmitter();
+
   cookieValue: String;
-  _rating: number = 2; // two way binding funkar ej
+  _rating: number;// = 2; // two way binding funkar ej
   food;
 
   submitted = false;
@@ -20,11 +22,13 @@ export class DialograteComponent implements OnInit {
   constructor(
     private myService: FoodsService,
    @Inject(MAT_DIALOG_DATA) data, 
-   private cookieService: CookieService) {
+   private cookieService: CookieService,
+   public dialogRef: MatDialogRef<DialograteComponent>) {
     this.food = data;
   }
 
   onSubmit() {
+    alert(this._rating);
     this.submitted = true;
     this.myService.addRating(this._rating, this.food);
     this.onRate();
@@ -43,6 +47,11 @@ export class DialograteComponent implements OnInit {
     if (this.cookieValue == "1"){
       this.submitted=true;
     }
+  this.dialogRef.close();
+  }
+  deleteFood(){
+    this.myService.deleteFood(this.food);
+    this.dialogRef.close();
   }
   clearCookies(){
     this.cookieService.set( this.food._id, '0' );

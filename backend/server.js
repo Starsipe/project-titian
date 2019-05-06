@@ -17,8 +17,8 @@ mongoose.connect('mongodb://localhost/mydb').then((err) => {
 server.use(bodyParser.json());
 server.use(cors());
 
-server.get('/getTop10', async (req, res) => {
-  const resp = await myFoodModel.find().sort({'ratingAvg':-1}).limit(10); // find food top 10 rating
+server.get('/getTop5', async (req, res) => {
+  const resp = await myFoodModel.find().sort({'ratingAvg':-1}).limit(5); // find food top 10 rating
   if (!resp) {
     console.log('Error not found');
   }else{
@@ -27,7 +27,6 @@ server.get('/getTop10', async (req, res) => {
 });
 
 server.get('/getKarallen', async (req, res) => {
-  console.log("getKarallen");
   const resp = await karallenModel.find();
   if (!resp) {
     console.log('Error not found');
@@ -37,7 +36,6 @@ server.get('/getKarallen', async (req, res) => {
 });
 
 server.get('/getZenit', async (req, res) => {
-  console.log("getZenit");
   const resp = await zenitModel.find();
   if (!resp) {
     console.log('Error not found');
@@ -80,8 +78,10 @@ function insertData(data){
       ratings: data.rating,
       ratingAvg: data.rating,
       restaurant: data.restaurant,
-      available: data.available
+      available: data.available,
+      price: data.price
     });
+  console.log(data.price);
     _instance.save( (err, _instance) => {
       if (err) console.error(err);
       console.log('Data successfully saved to mongoDB');
@@ -124,7 +124,7 @@ console.log(data);
       if (error) {
           console.log(error);
       } else {
-          console.log('Push successful');
+          console.log('Push rating successful');
       }
   });
 
@@ -138,6 +138,20 @@ console.log(data);
           console.log('Update avg success');
       }
   });
+
+});
+
+server.post('/delete', function(req, res, next){
+  console.log("delete: " + req.body.id);
+  var data = req.body;
+    myFoodModel.deleteOne( {_id: data.id}, function(err) {
+    if (!err) {
+        console.log('success deleting');
+    }
+    else {
+        console.log(err);
+    }
+});
 
 });
 

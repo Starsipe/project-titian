@@ -57,6 +57,7 @@ def getData():
                 "ratingAvg": 0,
                 "restaurant":"Kårallen",
                 "available": True,
+                "price:": 70
             }
         rec_id1 = collection.insert(emp_rec1) 
       
@@ -80,13 +81,14 @@ def getData():
                 "ratingAvg": 0,
                 "restaurant":"Zenit",
                 "available": True,
+                "price":80
                 }
         rec_id2 = collection.insert(emp_rec2)
       
 
 getData()
 
-schedule.every().day.at("10:00").do(getData)
+schedule.every().day.at("17:10").do(getData)
 
 while True:
     schedule.run_pending()
