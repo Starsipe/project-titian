@@ -9,12 +9,12 @@ import { map } from 'rxjs/operators';
 })
 export class FoodsService {
 
-  top10Path = 'http://localhost:3000/getTop10';
-  karallenPath = 'http://localhost:3000/getKarallen';
-  zenitPath = 'http://localhost:3000/getZenit';
-  foodTruckPath = 'http://localhost:3000/getFoodTruck';
-  mocadoPath = 'http://localhost:3000/getMocado';
-  kebabHusetPath = 'http://localhost:3000/getKebabHuset';
+  top10Path = 'http://217.210.174.92/getTop10';
+  karallenPath = 'http://217.210.174.92/getKarallen';
+  zenitPath = 'http://217.210.174.92/getZenit';
+  foodTruckPath = 'http://217.210.174.92:3000/getFoodTruck';
+  mocadoPath = 'http://217.210.174.92/getMocado';
+  kebabHusetPath = 'http://217.210.174.92:3000/getKebabHuset';
 
   foods: any;
 
@@ -54,7 +54,7 @@ export class FoodsService {
 
   submitData(name, rating, restaurant, available) {
 
-    this.http.post('http://localhost:3000/create',
+    this.http.post('http://217.210.174.92/create',
     {
       name: name,
       rating: rating,
@@ -69,10 +69,11 @@ export class FoodsService {
         );
   }
 
-  addRating (rating, food_data ) {
-    this.http.post('http://localhost:3000/addRating',
+  addRating (_rating, food_data ) {
+alert(_rating);
+    this.http.post('http://217.210.174.92/addRating',
     {
-      rating: rating,
+      rating: _rating,
       id: food_data._id,
       ratingAvg: food_data.ratingAvg,
       restaurant: food_data.restaurant,

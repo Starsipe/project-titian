@@ -1,3 +1,4 @@
+# coding=utf-8
 import datetime
 import schedule
 import time
@@ -9,7 +10,7 @@ from pymongo import MongoClient
 
 def inDB(item, foodCollection):
     #set available false for all 
-    foodCollection.updateMany({}, {$set: {available: false}})
+#    foodCollection.updateMany({}, {$set: {available: false}})
 
     for foodItem in foodCollection.find():
         if item == foodItem['name']:
@@ -45,7 +46,8 @@ def getData():
     foodCollection = db.foods
   
     for item in karallenMenu:
-        x = inDB(item, foodCollection)
+#        x = inDB(item, foodCollection)
+        x=[0]
         if x[0] == 1:
             emp_rec1 = x[1]
         else:
@@ -56,7 +58,7 @@ def getData():
                 "restaurant":"Kårallen",
                 "available": True,
             }
-        rec_id1 = collection.insert_one(emp_rec1) 
+        rec_id1 = collection.insert(emp_rec1) 
       
     print("Data inserted with record ids",rec_id1) 
 
@@ -79,16 +81,16 @@ def getData():
                 "restaurant":"Zenit",
                 "available": True,
                 }
-        rec_id2 = collection.insert_one(emp_rec2)
+        rec_id2 = collection.insert(emp_rec2)
       
 
 getData()
 
-#schedule.every().day.at("13:43").do(getData)
+schedule.every().day.at("10:00").do(getData)
 
-#while True:
-#    schedule.run_pending()
-#    time.sleep(60) # wait one minute
+while True:
+    schedule.run_pending()
+    time.sleep(60) # wait one minute
 
 
 

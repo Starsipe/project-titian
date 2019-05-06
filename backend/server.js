@@ -27,6 +27,7 @@ server.get('/getTop10', async (req, res) => {
 });
 
 server.get('/getKarallen', async (req, res) => {
+  console.log("getKarallen");
   const resp = await karallenModel.find();
   if (!resp) {
     console.log('Error not found');
@@ -36,6 +37,7 @@ server.get('/getKarallen', async (req, res) => {
 });
 
 server.get('/getZenit', async (req, res) => {
+  console.log("getZenit");
   const resp = await zenitModel.find();
   if (!resp) {
     console.log('Error not found');
@@ -87,13 +89,14 @@ function insertData(data){
 }
 
 server.post('/create', function(req, res, next){
-  var data = req.body;
+  console.log("create");
+	var data = req.body;
     insertData(data);
 });
 
 server.post('/addRating', async function(req, res, next){
   var data = req.body;
-
+console.log(data);
   var x;
  // var myModel;
 
@@ -121,7 +124,7 @@ server.post('/addRating', async function(req, res, next){
       if (error) {
           console.log(error);
       } else {
-          console.log('Push success');
+          console.log('Push successful');
       }
   });
 
@@ -138,6 +141,6 @@ server.post('/addRating', async function(req, res, next){
 
 });
 
-server.listen(3000, () => {
-  console.log('Server running on port 3000...');
+server.listen(3001, () => {
+  console.log('Server running on port 3001...');
 });

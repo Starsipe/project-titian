@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class DialograteComponent implements OnInit {
 
   cookieValue: String;
-  _rating: number;
+  _rating: number = 2; // two way binding funkar ej
   food;
 
   submitted = false;
