@@ -48,7 +48,7 @@ export class ListComponent implements OnInit {
   }
 
   getData() {
-    this.myService.getTop10().subscribe(data => this.foods = data); // Hämtar data från Service
+    this.myService.getTop5().subscribe(data => this.foods = data); // Hämtar data från Service
     this.myService.getKarallen().subscribe(data => this.karallenFoods = data); // Hämtar data från Service
     this.myService.getZenit().subscribe(data => this.zenitFoods = data); // Hämtar data från Service
     this.myService.getFoodtruck().subscribe(data => { 

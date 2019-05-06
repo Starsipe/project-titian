@@ -2,28 +2,22 @@
   width:100%;
   margin: auto;
   background-color: black;
- /* display: block;*/
-  /*border: 1px solid black;*/
-  /*margin: auto;*/
 }
 
 .list-card{
-  /*border: 2px solid red;*/
   float: left;
   width: 30%;
   margin: 15px;
 }
 
 .list-card-trucks{
-  /*border: 2px solid red;*/
-  /*float: left;*/
+  background-color: black;
   width: 100%;
   margin: auto;
 }
 
 .list-card-wrapper-trucks{
   display: inline-flex;
-  /*float: left;*/
   width: 100%;
   margin: auto;
 }
@@ -31,22 +25,31 @@
 .list-title {
   text-align: center;
 }
+
+.rateButton {
+  cursor: pointer;
+  float: right;
+  border-radius: 13px;
+  background-color: floralwhite;
+  box-shadow: 2px 5px grey;
+}
+.rateButton:hover {
+  background-color: #F0FAF0;
+  box-shadow: 2px 5px white;
+}
+
 .right {
   float: right;
   padding: 5px;
 }
+
+
 .food-card {
   width: 90%;
   margin: auto;
   margin-bottom: 20px;
 }
 
-.food-card:hover {
- /* width: 50%;
-  margin: auto;
-  margin-bottom: 20px;*/
-  background-color: bisque;
-}
 a {
   text-decoration: none;
   color: inherit;
@@ -54,26 +57,27 @@ a {
 
 @media only screen and (max-width: 600px) {
   .list-card-wrapper {
-  width:100%;
-  margin: auto;
- /* display: block;*/
-  /*border: 1px solid black;*/
-  /*margin: auto;*/
-}
+    width:100%;
+    margin: auto;
+  }
 
-.list-card{
-  /*border: 2px solid red;*/
- /* float: left;*/
-  width: 95%;
-  margin: 15px;
-}
+  .rateButton {
+    cursor: pointer;
+    float: right;
+    border: none;
+    background-color: white;
+  }
+  .rateButton:hover {
+    box-shadow: 2px 5px white;
+  }
+  .list-card{
+    width: 95%;
+    margin: 15px;
+  }
 
-.list-card-trucks{
-  /*border: 2px solid red;*/
-  /*float: left;*/
-  width: 100%;
-  margin: auto;
-}
-  
+  .list-card-trucks{
+    width: 100%;
+    margin: auto;
+  }
 }
 

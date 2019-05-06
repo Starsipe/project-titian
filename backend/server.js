@@ -81,7 +81,6 @@ function insertData(data){
       available: data.available,
       price: data.price
     });
-  console.log(data.price);
     _instance.save( (err, _instance) => {
       if (err) console.error(err);
       console.log('Data successfully saved to mongoDB');
@@ -96,14 +95,12 @@ server.post('/create', function(req, res, next){
 
 server.post('/addRating', async function(req, res, next){
   var data = req.body;
-console.log(data);
   var x;
  // var myModel;
 
   if(data.ratingAvg == 0){
     if(data.restaurant == "Zenit"){
       x = await zenitModel.find({_id: data.id});
-      console.log("\n\n"+data.available);
       insertData(data);
      // myModel = zenitModel;
     } else {
