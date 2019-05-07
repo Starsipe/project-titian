@@ -18,7 +18,18 @@ export class FormComponent {
   submitted = false;
   success = false;
 
+  auth = false;
+  _psw = ''
+
   constructor(private myService: FoodsService) {}
+
+  login(){
+    alert(this._psw);
+    if(this._psw == "1234"){
+       alert("true");
+      this.auth = true;
+    }
+  }
 
   onSubmit() {
     this.submitted = true;

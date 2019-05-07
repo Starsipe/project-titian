@@ -3,13 +3,14 @@
 }
 
 mat-toolbar a {
+  font-family: "Arial";
   display: inline-block;
   margin: 0 10px;
-  color: black;
+  color: #e00451;
   text-decoration: none;
 }
 mat-toolbar a:hover {
-  color: darkviolet;
+  color: #476191;
 }
 
 .centrera {
@@ -17,3 +18,20 @@ mat-toolbar a:hover {
   margin: auto;
 }
 
+img{
+  height: 40px;
+}
+
+#left{
+  float: left;
+}
+#right{
+  float: right;
+}
+
+.wrapper {
+  width:100%;
+  margin: auto;
+  background-color:#304870;
+  text-align: center;
+}

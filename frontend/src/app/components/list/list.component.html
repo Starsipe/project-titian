@@ -1,6 +1,6 @@
 <div class="list-card-wrapper">
 
-  <div class="list-card">
+  <div class="list-card" id="left">
     <mat-card>
       <mat-card-header>
         <mat-card-title>Dagens topp 5</mat-card-title>
@@ -12,38 +12,37 @@
           <mat-card-subtitle>
               {{food.restaurant}}
           </mat-card-subtitle>
-        <span><b>{{food.name}}</b></span>
-        <hr>
-        
+        <span id="food-name"><b>{{food.name}}</b></span>
+       <br>
+       <br>
+        <span *ngIf="food.available == false" class="right"><b style="color:red">Not available</b></span>
+        <br>
+        <span class="price-text">{{food.price}} kr</span>
+        <br>
         <button class="rateButton" [disabled]="rated(food._id)" (click)="openRateDialog(food)">
           <span><b>{{food.ratingAvg | number : '1.1-1'}}</b></span>
-          <mat-icon style="color:red">favorite</mat-icon>
+          <mat-icon style="color:#e00451">favorite</mat-icon>
         </button>
-        <br>
-        <span *ngIf="food.available == false" class="right"><b style="color:red">Not available</b></span>
-        
-        <span style="color:green">{{food.price}} kr</span>
 
       </mat-card>
     </mat-card>
   </div>
 
-  <div class="list-card">
+  <div class="list-card" id="center">
     <mat-card>
       <mat-card-header>
         <mat-card-title>
           <a target="_blank" href="http://www.hors.se/restaurang/restaurang-zenit/">Zenit</a>
           </mat-card-title>
-        <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
-          {{ today | date }}
-        </mat-card-subtitle>
+  
       </mat-card-header>
       <mat-card *ngFor="let food of zenitFoods" class="food-card">
           <mat-card-subtitle>
               {{food.restaurant}}
           </mat-card-subtitle>
-        <span><b>{{food.name}}</b></span>
-        <hr>
+        <span id="food-name"><b>{{food.name}}</b></span>
+        <br>
+        <br>
         <button *ngIf="food.ratingAvg != 0" class="rateButton" [disabled]="rated(food._id)" (click)="openRateDialog(food)">
           <span><b>{{food.ratingAvg | number : '1.1-1'}}</b></span>
           <mat-icon style="color:red">favorite</mat-icon>
@@ -55,28 +54,27 @@
         <br>
         <span *ngIf="food.available == false" class="right"><b style="color:red">Not available</b></span>
                 
-        <span style="color:green">{{food.price}} kr</span>
+        <span class="price-text">{{food.price}} kr</span>
         
       </mat-card>
     </mat-card>
   </div>
 
-  <div class="list-card">
+  <div class="list-card" id="right">
     <mat-card>
       <mat-card-header>
         <mat-card-title>
           <a target="_blank" href="https://eurest.mashie.com/public/menu/restaurang+k%C3%A5rallen/a4160fd5?country=se">Kårallen</a>
           </mat-card-title>
-        <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
-          {{ today | date }}
-        </mat-card-subtitle>
+     
       </mat-card-header>
       <mat-card *ngFor="let food of karallenFoods" class="food-card">
          <mat-card-subtitle>
               {{food.restaurant}}
           </mat-card-subtitle>
-        <span><b>{{food.name}}</b></span>
-        <hr>
+        <span id="food-name"><b>{{food.name}}</b></span>
+        <br>
+        <br>
         <button *ngIf="food.ratingAvg != 0" class="rateButton" [disabled]="rated(food._id)" (click)="openRateDialog(food)">
           <span><b>{{food.ratingAvg | number : '1.1-1'}}</b></span>
           <mat-icon style="color:red">favorite</mat-icon>
@@ -86,7 +84,7 @@
           <mat-icon style="color:red">favorite</mat-icon>
         </button>
 
-        <span style="color:green">{{food.price}} kr</span>
+        <span class="price-text">{{food.price}} kr</span>
         
       </mat-card>
     </mat-card>
@@ -104,16 +102,15 @@
         <mat-card>
           <mat-card-header>
             <mat-card-title>{{truck.restaurant}}</mat-card-title>
-            <mat-card-subtitle ng-app="myApp" ng-controller="datCtrl">
-             {{ today | date }}
-            </mat-card-subtitle>
+            
           </mat-card-header>
           <mat-card *ngFor="let food of truck" class="food-card">
             <mat-card-subtitle>
                   {{food.restaurant}}
               </mat-card-subtitle>
-            <span><b>{{food.name}}</b></span>
-            <hr>
+            <span id="food-name"><b>{{food.name}}</b></span>
+            <br>
+            <br>
             <button class="rateButton" [disabled]="rated(food._id)" (click)="openRateDialog(food)">
               <span *ngIf="food.ratingAvg != 0"><b>{{food.ratingAvg | number : '1.1-1'}}</b></span>
               <span *ngIf="food.ratingAvg == 0">-</span>
@@ -121,7 +118,7 @@
             </button>
             <span *ngIf="food.available == false" class="right"><b style="color:red">Not available</b></span>
             
-            <span style="color:green">{{food.price}} kr</span>
+            <span class="price-text">{{food.price}} kr</span>
   
           </mat-card>
         </mat-card>

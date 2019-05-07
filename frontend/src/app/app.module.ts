@@ -22,6 +22,7 @@ import {
   MatCheckboxModule,
   
 } from '@angular/material';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { LayoutModule } from '@angular/cdk/layout';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -38,6 +39,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { FormComponent } from './components/create/form/form.component';
 import { DialograteComponent } from './components/list/dialograte/dialograte.component';
 import { LoginComponent } from './components/login/login.component';
+import { FooterComponent } from './footer/footer.component';
 
 enableProdMode();
 
@@ -61,6 +63,7 @@ const routes: Routes = [
     FormComponent,
     DialograteComponent,
     LoginComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +84,8 @@ const routes: Routes = [
     MatDialogModule,
     MatSelectModule,
     MatCheckboxModule,
+    FlexLayoutModule,
+    
 
     AngularFireModule.initializeApp(
       // Initialize Firebase
